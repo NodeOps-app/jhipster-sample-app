@@ -25,7 +25,7 @@ import tech.jhipster.web.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api/bank-accounts")
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class BankAccountResource {
 
     private static final Logger LOG = LoggerFactory.getLogger(BankAccountResource.class);
@@ -79,7 +79,7 @@ public class BankAccountResource {
         if (bankAccount.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        if (!Objects.equals(id, bankAccount.getId())) {
+        if (Objects.equals(id, bankAccount.getId())) {
             throw new BadRequestAlertException("Invalid ID", ENTITY_NAME, "idinvalid");
         }
 
