@@ -2,7 +2,7 @@
   "jhipsterSampleApplicationApp": {
     "label": {
       "home": {
-        "title": "Labels",
+        "title": "Operation labels",
         "refreshListLabel": "Refresh list",
         "createLabel": "Create a new Label",
         "createOrEditLabel": "Create or edit a Label",
