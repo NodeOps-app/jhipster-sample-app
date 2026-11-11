@@ -156,12 +156,9 @@ public class OperationResource {
         @RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload
     ) {
         LOG.debug("REST request to get a page of Operations");
-        Page<Operation> page;
-        if (eagerload) {
-            page = operationRepository.findAllWithEagerRelationships(pageable);
-        } else {
-            page = operationRepository.findAll(pageable);
-        }
+        Page<Operation> page = eagerload
+            ? operationRepository.findAllWithEagerRelationships(pageable)
+            : operationRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
