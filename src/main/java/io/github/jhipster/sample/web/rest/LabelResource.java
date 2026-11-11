@@ -142,7 +142,8 @@ public class LabelResource {
     @GetMapping("")
     public List<Label> getAllLabels() {
         LOG.debug("REST request to get all Labels");
-        return labelRepository.findAll();
+        List<Label> labels = labelRepository.findAll();
+        return labels;
     }
 
     /**
