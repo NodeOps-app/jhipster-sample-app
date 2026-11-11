@@ -163,7 +163,7 @@ public class BankAccountResource {
      */
     @GetMapping("/{id}")
     public ResponseEntity<BankAccount> getBankAccount(@PathVariable("id") Long id) {
-        LOG.debug("REST request to get BankAccount : {}", id);
+        LOG.debug("REST request to get BankAccount with id {}", id);
         Optional<BankAccount> bankAccount = bankAccountRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(bankAccount);
     }
