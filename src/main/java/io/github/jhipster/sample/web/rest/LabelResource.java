@@ -51,9 +51,6 @@ public class LabelResource {
     @PostMapping("")
     public ResponseEntity<Label> createLabel(@Valid @RequestBody Label label) throws URISyntaxException {
         LOG.debug("REST request to save Label : {}", label);
-        if (label.getId() != null) {
-            throw new BadRequestAlertException("A new label cannot already have an ID", ENTITY_NAME, "idexists");
-        }
         label = labelRepository.save(label);
         return ResponseEntity.created(new URI("/api/labels/" + label.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, label.getId().toString()))
